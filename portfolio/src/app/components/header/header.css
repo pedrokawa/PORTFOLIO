@@ -1,0 +1,41 @@
+.main-header{
+    display: flex;
+    background-color: transparent;
+
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+
+    transition: background-color 0.3s ease, padding 0.3s;
+
+    padding: 20px;
+}
+
+.main-header.scrolled{
+
+  background-color: rgb(255, 255, 255); 
+  
+  /* Efeito Blur (Desfoque) no fundo - estilo iOS/Glassmorphism */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* Para Safari */
+  
+  /* Opcional: Diminuir o header para ficar mais compacto ao rolar */
+  padding: 10px 20px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.main-header a{
+    color:#e28f13;
+}
+
+.main-header img{
+    width: 50%;
+}
+
+
+.main-header ul{
+    display: flex;
+}

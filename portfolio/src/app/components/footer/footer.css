@@ -1,0 +1,14 @@
+.main-footer{
+    background-color: #bfb7b7;
+    color: #e28f30;
+}
+
+.footer-content{
+    display: flex;
+}
+
+.icons-social{
+    display: flex;
+    color: black;
+    width: 100px;
+}
