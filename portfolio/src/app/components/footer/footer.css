@@ -1,14 +1,46 @@
 .main-footer{
-    background-color: #bfb7b7;
-    color: #e28f30;
+    background-color: #ffffff;
+    color: black;
+    width: 100%;
+    height: 200px;
+}
+
+.center-content{
+    justify-items: center;
+}
+
+.center-content h3{
+    font-size: 48px;
+    color: black;
 }
 
 .footer-content{
+    display: grid;
+}
+
+.botton-content{
+    display: flex;
+    justify-content: space-around;
+}
+
+.copyright{
+    justify-items: center;
+}
+
+.copyright p{
+    font-size: 18px;
+    color: black;
+
+}
+
+img{
+    width: 30%;
+}
+
+.socials {
     display: flex;
 }
 
-.icons-social{
-    display: flex;
-    color: black;
-    width: 100px;
+.icon-facebook, .icon-linkedin, .icon-instagram{
+    width: 80px;
 }
