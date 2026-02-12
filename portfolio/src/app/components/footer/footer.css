@@ -63,3 +63,14 @@ img{
 .social-icon img:hover{
     transform: scale(1.15);
 }
+
+.right-content form{
+    display: grid;
+    width: 100%;
+    
+}
+
+.right-content input{
+    border-radius: 10px;
+    box-shadow: black;
+}
