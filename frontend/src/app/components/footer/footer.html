@@ -46,7 +46,7 @@
         </div>
 
         <div class="right-content">
-          <form
+          <!-- <form
             action="https://formspree.io/f/mwvbbwzd"
             method="POST"
           >
@@ -59,7 +59,34 @@
             </label>
             <textarea name="message"></textarea>
             <button type="submit">Enviar</button>
-          </form>
+          </form> -->
+        <div class="contato-container">
+            <h2>Fale Conosco</h2>
+            
+            <form [formGroup]="meuFormulario" (ngSubmit)="enviar()">
+              
+              <div class="campo">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" formControlName="nome" placeholder="Seu nome completo">
+              </div>
+
+              <div class="campo">
+                <label for="email">E-mail</label>
+                <input type="email" id="email" formControlName="email" placeholder="exemplo@email.com">
+              </div>
+
+              <div class="campo">
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" formControlName="mensagem" rows="4" placeholder="Insira seu texto aqui."></textarea>
+              </div>
+
+              <button type="submit" [disabled]="meuFormulario.invalid">
+                Enviar Mensagem
+              </button>
+
+            </form>
+          </div>
+
         </div>
     </div>    
 
