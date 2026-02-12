@@ -2,8 +2,13 @@ const express = require('express');
 const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
 
+const { Resend } = require('resend');
+const resend = new Resend('re_BwNg6Q8q_HMBMAVhq1aD3LKRpMfzQsH2z');
+
 const app = express();
 const prisma = new PrismaClient();
+
+// config email
 
 app.use(cors());
 app.use(express.json());
@@ -24,7 +29,18 @@ app.post('/api/contato', async(req, res) => {
             }
         });
 
-        console.log("Novo lead", novoLead);
+        await resend.emails.send({
+            from: 'onboarding@resend.dev',
+            to: 'tecnologia@asfaltopav.com.br',
+            replyTo: email,
+            subject: `Novo contato via portfólio: ${nome}`,
+            html: `<p>Novo contato de <strong>${nome}<strong>!</p>
+            <p>${mensagem}</p>
+            <p>Contato:${email}</p>`
+        })
+
+
+        console.log("Email enviado com sucesso.");
         res.status(201).json(novoLead);
     } catch (error) {
         console.error(error);
