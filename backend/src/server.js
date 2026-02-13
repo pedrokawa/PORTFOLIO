@@ -3,10 +3,10 @@ const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
 
 const { Resend } = require('resend');
-const resend = new Resend('re_BwNg6Q8q_HMBMAVhq1aD3LKRpMfzQsH2z');
 
 const app = express();
 const prisma = new PrismaClient();
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // config email
 
@@ -29,27 +29,32 @@ app.post('/api/contato', async(req, res) => {
             }
         });
 
-        await resend.emails.send({
-            from: 'onboarding@resend.dev',
-            to: 'tecnologia@asfaltopav.com.br',
-            replyTo: email,
-            subject: `Novo contato via portfólio: ${nome}`,
-            html: `<p>Novo contato de <strong>${nome}<strong>!</p>
-            <p>${mensagem}</p>
-            <p>Contato:${email}</p>`
+        const data = await resend.emails.send({
+                from: 'onboarding@resend.dev',
+                to: 'tecnologia@asfaltopav.com.br',
+                replyTo: email,
+                subject: `Novo contato via portfólio: ${nome}`,
+                html: `<p>Novo contato de <strong>${nome}<strong>!</p>
+                <p>${mensagem}</p>
+                <p>Contato:${email}</p>`
         })
 
-        console.log("resposta do resend", data);
-
-
+        console.log("Resposta do resend:", data);
         console.log("Email enviado com sucesso.");
         res.status(201).json(novoLead);
+    
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "erro ao salvar no banco de dados"});
     }
 });
 
-app.listen(3000, () => {
-    console.log('Servidor rodando em http://localhost:3000');
-})
+if (process.env.NODE_ENV !== 'production'){
+    app.listen(3000, () => console.log('Servidor rodando  na porta 3000'));
+}
+
+module.exports = app;
+
+// app.listen(3000, () => {
+//     console.log('Servidor rodando em http://localhost:3000');
+// })
