@@ -39,6 +39,8 @@ app.post('/api/contato', async(req, res) => {
             <p>Contato:${email}</p>`
         })
 
+        console.log("resposta do resend", data);
+
 
         console.log("Email enviado com sucesso.");
         res.status(201).json(novoLead);
