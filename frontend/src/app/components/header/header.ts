@@ -8,6 +8,15 @@ import { Component, HostListener } from '@angular/core';
 })
 export class Header {
 
+  goto(id: string){
+    const elemento = document.getElementById(id);
+    if(elemento){
+      elemento.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'})
+    }
+  }
+  
   isScrolled = false;
 
   @HostListener('window:scroll', [])
