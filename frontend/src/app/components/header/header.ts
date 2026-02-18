@@ -9,6 +9,14 @@ import { Component, HostListener } from '@angular/core';
 export class Header {
 
   goto(id: string){
+
+    if(id === 'home'){
+      window.scrollTo({ 
+        top: 0,
+        behavior: 'smooth'});
+      return;
+    }
+
     const elemento = document.getElementById(id);
     if(elemento){
       elemento.scrollIntoView({
@@ -16,7 +24,7 @@ export class Header {
         block: 'start'})
     }
   }
-  
+
   isScrolled = false;
 
   @HostListener('window:scroll', [])
