@@ -1,0 +1,127 @@
+/* src/app/components/about/about.component.css */
+
+/* O fundo da seção (pode ser branco ou cinza bem clarinho) */
+.about-section {
+  background-color: #f9f9f9;
+  padding: 80px 20px; /* Espaço em cima e dos lados */
+  color: #333;
+}
+
+/* Centraliza e limita a largura para não esticar em monitores gigantes */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Divide em 2 colunas iguais */
+  gap: 60px; /* Espaço entre texto e imagem */
+  align-items: center; /* Centraliza verticalmente */
+}
+
+/* --- TIPOGRAFIA --- */
+.subtitle {
+  color: #e67e22; /* Laranja da sua marca */
+  font-weight: 700;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #1a1a1a;
+}
+
+.highlight {
+  color: #e67e22; /* Destaque no título */
+}
+
+p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* --- ESTATÍSTICAS --- */
+.stats-grid {
+  display: flex;
+  gap: 40px;
+  margin: 30px 0;
+  border-left: 4px solid #e67e22;
+  padding-left: 20px;
+}
+
+.stat-item h3 {
+  font-size: 2rem;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.stat-item p {
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+/* --- BOTÃO --- */
+.btn-primary {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #e67e22;
+}
+
+/* --- IMAGEM --- */
+.about-image {
+  position: relative; /* Para poder posicionar o detalhe decorativo */
+}
+
+.about-image img {
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  position: relative;
+  z-index: 2; /* Fica na frente do detalhe */
+}
+
+/* Aquele quadradinho decorativo atrás da foto */
+.img-detail {
+  position: absolute;
+  top: -20px;
+  right: -20px;
+  width: 100px;
+  height: 100px;
+  background-color: #e67e22;
+  border-radius: 10px;
+  z-index: 1; /* Fica atrás da foto */
+}
+
+/* --- RESPONSIVIDADE (Celular) --- */
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr; /* Vira 1 coluna só */
+    text-align: center; /* Centraliza texto no celular */
+  }
+
+  .stats-grid {
+    justify-content: center; /* Centraliza os stats */
+    border-left: none; /* Tira a borda lateral */
+    border-top: 4px solid #e67e22; /* Põe borda em cima */
+    padding-top: 20px;
+    padding-left: 0;
+  }
+  
+  .img-detail {
+    display: none; /* Esconde o detalhe no celular pra não quebrar layout */
+  }
+}

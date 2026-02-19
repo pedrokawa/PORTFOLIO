@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angula
 import { Contato } from '../../services/contato';
 import { CommonModule } from '@angular/common';
 import { email } from '@angular/forms/signals';
+import { currentYear } from '../../utils/currentYear';
 
 @Component({
   selector: 'app-footer',
@@ -48,7 +49,6 @@ export class Footer {
     }
   }
 
-  currentYear = new Date().getFullYear();
-
+  anoAtual: number = currentYear();
 
 }
