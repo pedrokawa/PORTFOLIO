@@ -1,10 +1,10 @@
-<section class="customers-grid">
-    @for (customers of listCustomers; track customers.id) {
-    <img 
-      [src]="'/assets/logo/' + customers.arquivo" 
-      [alt]="'Logo ' + customers.nome" 
-      class="logo-padrao"
-      loading="lazy"
-    >
-  }       
+<section class="customers-grid" id="customers">
+        @for (customers of listCustomers; track customers.id) {
+          <img 
+            [src]="'/assets/logo/' + customers.arquivo" 
+            [alt]="'Logo ' + customers.nome" 
+            class="logo-padrao"
+            loading="lazy"
+          >
+        }    
 </section>
