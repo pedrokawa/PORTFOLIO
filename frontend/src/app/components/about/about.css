@@ -7,6 +7,7 @@
   color: #333;
 }
 
+
 /* Centraliza e limita a largura para não esticar em monitores gigantes */
 .container {
   max-width: 1200px;
