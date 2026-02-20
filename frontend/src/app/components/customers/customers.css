@@ -1,0 +1,46 @@
+/* Container para organizar as logos lado a lado */
+.customers-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  flex-wrap: wrap;       /* Quebra a linha se faltar espaço */
+  gap: 2rem;             /* Espaçamento entre as logos */
+  justify-content: center; /* Centraliza tudo */
+  align-items: center;     /* Alinha verticalmente ao centro */
+
+  max-width: 1200px;
+  margin: 0 auto;
+
+}
+
+/* A padronização de tamanho */
+.logo-padrao {
+  width: 150px;  /* Largura máxima permitida */
+  height: 100px;  /* Altura máxima permitida */
+  
+  /* O SEGREDO ESTÁ AQUI: */
+  object-fit: contain; 
+  
+  /* Opcional: Deixar as logos cinzas e colorir no hover (efeito bem profissional) */
+  filter: grayscale(100%) opacity(70%);
+  transition: filter 0.3s ease;
+}
+
+.logo-padrao:hover {
+  filter: grayscale(0%) opacity(100%);
+}
+
+/* Para Tablets (telas menores que 1024px) */
+@media (max-width: 1024px) {
+  .clientes-grid {
+    /* Muda para 4 ou 3 colunas */
+    grid-template-columns: repeat(4, 1fr); 
+  }
+}
+
+/* Para Celulares (telas menores que 768px) */
+@media (max-width: 768px) {
+  .clientes-grid {
+    /* Muda para 2 colunas, ficando bem organizado na tela do celular */
+    grid-template-columns: repeat(2, 1fr); 
+  }
+}
