@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { RouterLink } from "@angular/router";
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Contato } from '../../services/contato';
 import { CommonModule } from '@angular/common';
-import { email } from '@angular/forms/signals';
 import { currentYear } from '../../utils/currentYear';
 
 @Component({
@@ -14,6 +13,26 @@ import { currentYear } from '../../utils/currentYear';
   styleUrl: './footer.css',
 })
 export class Footer {
+
+  mostraToastSucesso = signal(false);
+  mostraToastErro = signal(false);
+
+  exibirToastSucesso(){
+    this.mostraToastSucesso.set(true);
+
+    setTimeout(() => {
+      this.mostraToastSucesso.set(false);
+    }, 2800);
+  }
+
+  exibirToastErro(){
+    this.mostraToastErro.set(true);
+
+    setTimeout(() => {
+      this.mostraToastErro.set(false);
+    }, 2800);
+
+  }
 
   meuFormulario: FormGroup;
   
@@ -36,16 +55,16 @@ export class Footer {
 
       this.Contato.enviarContato(dados).subscribe({
         next: (res) => {
-          alert('Mensagem enviada');
+          this.exibirToastSucesso();
           this.meuFormulario.reset();
         },
+
         error: (err) => {
-          console.error(err);
-          alert("Erro ao enviar.");
+          this.exibirToastErro();
         }
       })
     } else {
-      alert('Preencha todos os campos corretamente');
+      this.exibirToastErro();
     }
   }
 

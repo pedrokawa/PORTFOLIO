@@ -7,7 +7,6 @@
         <div class="left-content">
               <ul class="contact-section">
                 <li>Av. Tiradentes, 501 - Sala 1101, Londrina - PR</li>
-                <li>contato@asfaltopav.com.br</li>
               </ul>
             <div class="social-section">
 
@@ -46,20 +45,7 @@
         </div>
 
         <div class="right-content">
-          <!-- <form
-            action="https://formspree.io/f/mwvbbwzd"
-            method="POST"
-          >
-            <label>
-              Email:
-            </label>
-            <input type="email" name="email">
-            <label>
-              Mensagem:
-            </label>
-            <textarea name="message"></textarea>
-            <button type="submit">Enviar</button>
-          </form> -->
+
         <div class="contato-container">
             <h2>Fale Conosco</h2>
             
@@ -80,7 +66,7 @@
                 <textarea id="mensagem" formControlName="mensagem" rows="4" placeholder="Insira seu texto aqui."></textarea>
               </div>
 
-              <button type="submit" [disabled]="meuFormulario.invalid">
+              <button type="submit">
                 Enviar Mensagem
               </button>
 
@@ -96,8 +82,32 @@
       <p>&copy; {{ anoAtual }}. Desenvolvido por ASFALTOPAV. Todos os direitos reservados.</p>
     
     </div>
+
   </div>
  
-  
-
 </footer>
+
+  @if (mostraToastSucesso()) {
+    <div class="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 bg-green-600 text-white px-5 py-3 rounded-lg shadow-xl animate-bounce-short">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+
+      <span class="font-medium">Mensagem enviada com sucesso!</span>
+      
+    </div>
+  }
+
+  @if (mostraToastErro()) {
+    <div class="fixed bottom-5 right-5 z-[9999] flex items-center gap-3 bg-red-600 text-white px-5 py-3 rounded-lg shadow-xl animate-bounce-short">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+
+        <span class="font-medium">Erro ao enviar. Tente novamente!</span>
+        
+      </div>
+  }
+  
