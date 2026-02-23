@@ -9,7 +9,7 @@ import { currentYear } from '../../utils/currentYear';
 @Component({
   selector: 'app-footer',
   standalone: true,
-  imports: [RouterLink, CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './footer.html',
   styleUrl: './footer.css',
 })
