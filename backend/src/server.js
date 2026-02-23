@@ -20,6 +20,12 @@ app.get('/', (req, res) => {
 app.post('/api/contato', async(req, res) => {
     const { nome, email, mensagem } = req.body;
 
+    if(!nome || !email || !mensagem){
+       return res.status(400).json({ 
+        error: "Todos os campos (nome, email, mensagem) são obrigatórios." 
+    }); 
+    }
+
     try{
         const novoLead = await prisma.lead.create({
             data: {
@@ -39,13 +45,11 @@ app.post('/api/contato', async(req, res) => {
                 <p>Contato:${email}</p>`
         })
 
-        console.log("Resposta do resend:", data);
-        console.log("Email enviado com sucesso.");
         res.status(201).json(novoLead);
     
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "erro ao salvar no banco de dados"});
+        res.status(500).json({ error: "erro ao processar"});
     }
 });
 
