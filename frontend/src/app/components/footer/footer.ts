@@ -42,11 +42,38 @@ export class Footer {
   ){
     this.meuFormulario = this.fb.group({
       nome: ['', Validators.required],
+      telefone: ['', [Validators.required, Validators.minLength(14)]],
       email: ['', [Validators.required, Validators.email]],
       mensagem: ['', Validators.required]
     })
 
   }
+  // mascara para telefone 
+  maskTel(event: any){
+    let valor = event.target.value;
+
+    valor = valor.replace(/\D/g, '');
+
+    if(valor.length > 11) {
+      valor = valor.substring(0 , 11);
+    }
+
+    if (valor.length === 0) {
+          event.target.value = '';
+        } else if (valor.length <= 2) {
+          event.target.value = `(${valor}`;
+        } else if (valor.length <= 6) {
+          event.target.value = `(${valor.substring(0, 2)}) ${valor.substring(2)}`;
+        } else if (valor.length <= 10) {
+          event.target.value = `(${valor.substring(0, 2)}) ${valor.substring(2, 6)}-${valor.substring(6)}`;
+        } else {
+          event.target.value = `(${valor.substring(0, 2)}) ${valor.substring(2, 7)}-${valor.substring(7)}`;
+    }
+
+    this.meuFormulario.get('telefone')?.setValue(event.target.value, { emitEvent: false});
+  }
+
+
 
   // enviar
   enviar(){

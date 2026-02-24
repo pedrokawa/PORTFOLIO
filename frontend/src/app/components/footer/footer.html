@@ -58,7 +58,11 @@
 
               <div class="campo">
                 <!-- <label for="nome">Telefone</label> -->
-                <input type="tel" id="telefone" formControlName="telefone" placeholder="Telefone">
+                <input type="tel" id="telefone" 
+                formControlName="telefone" 
+                placeholder="(00) 00000-0000" 
+                maxlength="15" 
+                (input)="maskTel($event)">
               </div>
 
               <div class="campo">

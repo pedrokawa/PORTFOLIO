@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 export interface Contato{
   nome: string;
+  telefone: string;
   email: string;
   mensagem: string;
 }
