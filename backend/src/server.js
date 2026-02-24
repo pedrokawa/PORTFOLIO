@@ -18,9 +18,9 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/contato', async(req, res) => {
-    const { nome, email, mensagem } = req.body;
+    const { nome, telefone, email, mensagem } = req.body;
 
-    if(!nome || !email || !mensagem){
+    if(!nome || !telefone || !email || !mensagem){
        return res.status(400).json({ 
         error: "Todos os campos (nome, email, mensagem) são obrigatórios." 
     }); 
@@ -29,7 +29,8 @@ app.post('/api/contato', async(req, res) => {
     try{
         const novoLead = await prisma.lead.create({
             data: {
-                nome, 
+                nome,
+                telefone, 
                 email,
                 mensagem
             }
@@ -39,10 +40,11 @@ app.post('/api/contato', async(req, res) => {
                 from: 'onboarding@resend.dev',
                 to: 'tecnologia@asfaltopav.com.br',
                 replyTo: email,
-                subject: `Novo contato via portfólio: ${nome}`,
+                subject: `Novo contato de ${nome}, via portfólio.`,
                 html: `<p>Novo contato de <strong>${nome}<strong>!</p>
                 <p>${mensagem}</p>
-                <p>Contato:${email}</p>`
+                <p>Telefone: ${telefone}/p>
+                <p>Contato: ${email}</p>`
         })
 
         res.status(201).json(novoLead);
@@ -58,7 +60,3 @@ if (process.env.NODE_ENV !== 'production'){
 }
 
 module.exports = app;
-
-// app.listen(3000, () => {
-//     console.log('Servidor rodando em http://localhost:3000');
-// })

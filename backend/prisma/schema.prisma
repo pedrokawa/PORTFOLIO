@@ -16,6 +16,7 @@ datasource db {
 model Lead {
   id Int @id @default(autoincrement())
   nome String
+  telefone String @default("Não informado")
   email String
   mensagem String
   createdAt DateTime @default(now())
