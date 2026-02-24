@@ -43,8 +43,9 @@ app.post('/api/contato', async(req, res) => {
                 subject: `Novo contato de ${nome}, via portfólio.`,
                 html: `<p>Novo contato de <strong>${nome}<strong>!</p>
                 <p>${mensagem}</p>
-                <p>Telefone: ${telefone}/p>
-                <p>Contato: ${email}</p>`
+                <p>Dados para contato.</p>
+                <p>Telefone: ${telefone}</p>
+                <p>Email: ${email}</p>`
         })
 
         res.status(201).json(novoLead);
