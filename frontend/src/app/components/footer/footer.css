@@ -20,7 +20,14 @@
 
 .bottom-content{
     display: flex;
-    justify-content: space-around;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+
+    gap: 10%;
+    /* justify-content: space-around; */
+
+    width: 100%;
     padding: 20px 0;
 }
 
@@ -64,17 +71,63 @@ img{
     transform: scale(1.15);
 }
 
-.right-content form{
-    display: grid;
+.contato-container{
+    width: 450px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
     width: 100%;
+    max-width: 450px;
+    /* margin: 0 auto; */
+}
+
+form input {
+    width: 100%;
+    height: 45px; 
+    padding: 0 8px;
     
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
 }
 
-.right-content input{
-    border-radius: 10px;
-    box-shadow: black;
+form textarea{
+    height: 180px;
+    resize: none;
+    width: 100%;
+
+    padding: 0 20px;
 }
 
-.campo { 
-    display: grid;
+form input,
+form textarea{
+    border: 1px solid gray;
+    border-radius: 4px;
+}
+
+form input:focus,
+form textarea:focus{
+    outline: none;
+    box-shadow: none;
+}
+
+.btn-enviar{
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 12px 24px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-enviar:hover{
+    background-color: #e67e22;
 }
