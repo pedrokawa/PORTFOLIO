@@ -13,9 +13,14 @@
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Divide em 2 colunas iguais */
+  grid-template-columns: 1fr 1fr; 
   gap: 60px; /* Espaço entre texto e imagem */
   align-items: center; /* Centraliza verticalmente */
+
+  scroll-margin-top: 100px;
+
+  min-height: calc(100vh - 100px);
+  align-content: center;
 }
 
 /* --- TIPOGRAFIA --- */
@@ -33,10 +38,6 @@ h2 {
   line-height: 1.2;
   margin-bottom: 20px;
   color: #1a1a1a;
-}
-
-.highlight {
-  color: #e67e22; /* Destaque no título */
 }
 
 p {
@@ -89,16 +90,24 @@ p {
   position: relative; /* Para poder posicionar o detalhe decorativo */
 }
 
-.about-image img {
+.about-image img,
+.about-image-2 img {
   width: 100%;
-  border-radius: 10px;
+  /* border-radius: 10px; */
   box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-  border-radius: 20px;
-  /* transition: transform 0.3s ease, box-shadow 0.3s ease; */
+  /* border-radius: 20px; */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
   position: relative;
   z-index: 2; /* Fica na frente do detalhe */
 }
+
+ul {
+  list-style-type: disc;
+  margin-left: 1rem;
+}
+
+
 
 /* --- RESPONSIVIDADE (Celular) --- */
 @media (max-width: 768px) {
