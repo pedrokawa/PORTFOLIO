@@ -11,4 +11,11 @@ export class About {
 
   anoAtual: number = currentYear() - 2011;
 
+  irParaSecao(idSecao: string){
+    const elemento = document.getElementById(idSecao);
+    if(elemento){
+      elemento.scrollIntoView({ behavior: 'smooth', block: 'start'});
+    }
+  }
+
 }

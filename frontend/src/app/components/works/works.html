@@ -1,1 +1,87 @@
-<p>works works!</p>
+<section class="obras-servicos" id="works">
+  <div class="container">
+    <h2>Serviços e Obras</h2>
+
+    <div class="tabs-header">
+      <button 
+        (click)="mudarAba('aba1')" 
+        [class.ativo]="abaAtiva === 'aba1'">
+        Microrrevestimento Asfáltico a Frio - MRAF
+      </button>
+      
+      <button 
+        (click)="mudarAba('aba2')" 
+        [class.ativo]="abaAtiva === 'aba2'">
+        Pré Misturado a Frio - PMF
+      </button>
+      
+      <button 
+        (click)="mudarAba('aba3')" 
+        [class.ativo]="abaAtiva === 'aba3'">
+        Aproveitamento de Fresado - RAP
+      </button>
+    </div>
+
+    <div class="tabs-content">
+      
+        @if (abaAtiva === 'aba1') {
+            <div class="tab-pane fade-in">
+                <div class="grid-obras">
+                <div class="texto-obra">
+                    <h3>Microrrevestimento Asfáltico a Frio e Lama Asfáltica</h3>
+                    
+                    <p>O microrrevestimento asfáltico é um tipo de técnica de pavimentação 
+                        utilizada para a reabilitação de superfícies asfálticas deterioradas.</p>
+                    <p>É uma cada fina de mistura asfáltica aplicada sobre o pavimento para melhorar 
+                        suas propriedades e prolongar a vida útil. Esse processo é frequentemente utilizado 
+                        como medida preventiva para evitar danos mais graves ao pavimento.
+                    </p>
+                    
+                </div>
+
+                <div class="imagem-obra">
+                    <img src="assets/images/micro.webp" alt="Microrrevestimento">
+                </div>
+                </div>
+            </div>
+        }
+        
+        @if (abaAtiva === 'aba2'){
+            <div class="tab-pane fade-in">
+            <div class="grid-obras">
+                <div class="texto-obra">
+                    <h3>Pré Misturado a Frio</h3>
+                    <p>O PMF é uma técnica utilizada na execução da camada intermediária de regularização e reforço da 
+                        estrutura do pavimento, também conhecida como binder em revestimentos asfálticos.</p>
+                    
+                </div>
+
+                <div class="imagem-obra">
+                    <img src="assets/images/pmf.webp" alt="PMF">
+                </div>
+            </div>
+            </div>
+        }
+
+        @if(abaAtiva === 'aba3'){
+            <div class="tab-pane fade-in">
+            <div class="grid-obras">
+                <div class="texto-obra">
+                    <h3>Aproveitamento de Fresado</h3>
+                    <p>O RAP é o resultado do processo de recuperação de material asfáltico proveniente 
+                        de pavimentos desgastados.</p>
+                    <p>Em vez de descartar essas camadas antigas, elas são trituradas e processadas
+                         para se tornarem parte integrante de novas construções viárias. </p>
+                
+                </div>
+
+                <div class="imagem-obra">
+                    <img src="assets/images/rap.webp" alt="RAP">
+                </div>
+            </div>
+            </div>
+        }
+ 
+    </div>
+  </div>
+</section>

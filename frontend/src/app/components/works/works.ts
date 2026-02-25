@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-
 @Component({
   selector: 'app-works',
   imports: [],
@@ -8,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class Works {
 
+  abaAtiva: string = 'aba1';
+
+  mudarAba(novaAba: string){
+    this.abaAtiva = novaAba;
+  }
 }

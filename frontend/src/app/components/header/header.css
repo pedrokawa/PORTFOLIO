@@ -29,7 +29,7 @@
 }
 
 .main-header.scrolled a{
-    color: rgb(245, 151, 10);
+    color: #ea580c;
 }
 
 .main-header a{
@@ -63,7 +63,7 @@ nav a::after {
   height: 2px; 
   bottom: 0;
   left: 0;
-  background-color: #e67e22; 
+  background-color: #ea580c; 
   transition: width 0.3s ease-in-out; /* Animação de crescimento */
 }
 
