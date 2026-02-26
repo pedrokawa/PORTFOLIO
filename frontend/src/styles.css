@@ -26,6 +26,11 @@ input, button, textarea {
     font-family: inherit;
 }
 
+section, 
+footer {
+    scroll-margin-top: 80px;
+}
+
 app-header {
     flex: 0 0 auto;
 }
@@ -52,4 +57,20 @@ app-footer {
 
 .animate-bounce-short {
     animation: slideUpFade 0.4s ease-out forwards;
+}
+
+/* =========================================
+   OCULTA O HERO/VÍDEO NO MOBILE
+   ========================================= */
+@media (max-width: 850px) {
+    /* Substitua '.hero-section' pela classe ou ID real da sua seção de topo */
+    .main-home {
+        display: none !important;
+    }
+
+    /* Como a página agora começa no 'Sobre', precisamos dar um espaço 
+       extra no topo para o seu Header fixo não cobrir o título 'Quem Somos' */
+    #about { /* Substitua pelo ID real da seção Quem Somos */
+        padding-top: 120px !important; 
+    }
 }
