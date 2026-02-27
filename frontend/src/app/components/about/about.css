@@ -110,10 +110,11 @@ ul {
 
 
 /* --- RESPONSIVIDADE (Celular) --- */
-@media (max-width: 768px) {
+@media (max-width: 750px) {
   .container {
     grid-template-columns: 1fr; /* Vira 1 coluna só */
     text-align: center; /* Centraliza texto no celular */
+    margin-top: 2rem;
   }
 
   .stats-grid {

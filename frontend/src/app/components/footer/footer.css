@@ -144,3 +144,39 @@ form textarea:focus{
 .btn-enviar:hover{
     background-color: #e67e22;
 }
+
+@media (max-width: 750px){
+    .bottom-content {
+        display: flex !important;
+        flex-direction: column !important; /* Transforma as 2 colunas em 1 só (empilha) */
+        gap: 40px; /* Dá um bom respiro entre o mapa e o formulário */
+        padding: 0 15px; /* Respiro nas laterais */
+        width: 100%;
+    }
+
+    /* 2. O Bloco do Mapa e Dados (Garante que fica em CIMA) */
+    .left-content{ /* Substitua pela classe da div do mapa/redes sociais */
+        order: 1; /* Ordem 1 = Fica no topo */
+        width: 100%;
+    }
+
+    /* 3. Garante que o iframe (mapa do Google) não vase da tela */
+    .left-contento iframe {
+        width: 100% !important;
+        height: 300px; /* Altura ideal para telemóvel */
+        border-radius: 12px; /* Deixa as bordas do mapa arredondadas e modernas */
+    }
+
+    /* 4. O Bloco do Formulário (Garante que fica em BAIXO) */
+    .contato-container { /* Substitua pela classe da div do formulário */
+        order: 2; /* Ordem 2 = Fica embaixo */
+        width: 100%;
+    }
+
+    /* 5. Ajustes finos nos inputs para não vazarem */
+    .contato-container input, 
+    .contato-container textarea {
+        width: 100%; /* Garante que os campos de texto preencham a tela mas não vazem */
+        box-sizing: border-box; /* Impede que o padding quebre o tamanho do input */
+    }
+}

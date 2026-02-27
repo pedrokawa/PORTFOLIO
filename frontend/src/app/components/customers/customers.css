@@ -36,18 +36,26 @@
   filter: grayscale(0%) opacity(100%);
 }
 
-/* Para Tablets (telas menores que 1024px) */
-@media (max-width: 1024px) {
-  .clientes-grid {
-    /* Muda para 4 ou 3 colunas */
-    grid-template-columns: repeat(4, 1fr); 
-  }
-}
+@media (max-width: 850px) {
+    
+    /* 1. O Container Pai dos Logos */
+    /* ATENÇÃO: Substitua '.clientes-grid' pela classe real que você deu à div que segura as imagens */
+    .customers-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important; /* O SEGREDO: Cria exatamente 2 colunas de tamanhos iguais */
+        gap: 20px; /* Espaço entre um logo e outro */
+        justify-items: center; /* Centraliza o logo horizontalmente dentro do seu quadrado */
+        align-items: center; /* Centraliza o logo verticalmente */
+        width: 100%;
+        padding: 0 15px; /* Um respiro nas laterais */
+    }
 
-/* Para Celulares (telas menores que 768px) */
-@media (max-width: 768px) {
-  .clientes-grid {
-    /* Muda para 2 colunas, ficando bem organizado na tela do celular */
-    grid-template-columns: repeat(2, 1fr); 
-  }
+    /* 2. O Comportamento das Imagens (Logos) */
+    .customers-grid img {
+        width: 100%;
+        max-width: 120px; /* Impede que o logo fique gigante se a tela for um tablet */
+        height: auto;
+        max-height: 80px; /* Ajuda a nivelar logos que sejam muito "altos" */
+        object-fit: contain; /* Garante que o logo não seja cortado */
+    }
 }

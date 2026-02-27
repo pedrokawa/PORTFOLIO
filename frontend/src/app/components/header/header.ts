@@ -8,6 +8,17 @@ import { Component, HostListener } from '@angular/core';
 })
 export class Header {
 
+  menuOpen: boolean = false;
+
+  toggleMenu(){
+    this.menuOpen = !this.menuOpen;
+  }
+
+  fecharMenu(){
+    this.menuOpen = false;
+  }
+
+
   goto(id: string){
 
     if(id === 'home'){
@@ -23,6 +34,8 @@ export class Header {
         behavior: 'smooth',
         block: 'start'})
     }
+
+    this.fecharMenu();
   }
 
   isScrolled = false;
@@ -31,4 +44,6 @@ export class Header {
   onWindowScroll(){
     this.isScrolled = window.scrollY > 50;
   }
+
+
 }

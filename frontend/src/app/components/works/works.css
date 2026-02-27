@@ -114,4 +114,25 @@
         color: white;
         border-radius: 8px;
     }
+
+    .grid-obras { 
+    display: grid !important;
+    grid-template-columns: 1fr !important; /* O SEGREDO: Força uma única coluna de 100% */
+    gap: 30px; /* O espaço entre o texto e a foto de baixo */
+    padding: 0 15px; /* Um pequeno respiro nas laterais da tela */
+    }
+
+    /* O texto ocupa toda a largura */
+    .texto-obra {
+        width: 100%;
+        text-align: justify; /* Centralizar os textos e botão fica mais bonito no mobile */
+    }
+
+    /* A imagem estica para preencher a largura total, sem distorcer */
+    .imagem-obra img {
+        width: 100%;
+        max-width: 100%; /* Garante que ela não escape da tela */
+        height: auto; /* Mantém a proporção da foto */
+        object-fit: cover; /* Faz a foto preencher bem o espaço */
+    }
 }
