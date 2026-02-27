@@ -94,8 +94,6 @@ form {
     gap: 20px;
 
     width: 100%;
-    max-width: 450px;
-    /* margin: 0 auto; */
 }
 
 form input {
@@ -146,6 +144,10 @@ form textarea:focus{
 }
 
 @media (max-width: 750px){
+    .main-footer{
+        margin-top: 5rem;
+    }
+    
     .bottom-content {
         display: flex !important;
         flex-direction: column !important; /* Transforma as 2 colunas em 1 só (empilha) */
@@ -174,9 +176,10 @@ form textarea:focus{
     }
 
     /* 5. Ajustes finos nos inputs para não vazarem */
-    .contato-container input, 
-    .contato-container textarea {
-        width: 100%; /* Garante que os campos de texto preencham a tela mas não vazem */
+    form input, 
+    form textarea {
+        width: 100% !important; /* Garante que os campos de texto preencham a tela mas não vazem */
+        max-width: 100%;
         box-sizing: border-box; /* Impede que o padding quebre o tamanho do input */
     }
 }
