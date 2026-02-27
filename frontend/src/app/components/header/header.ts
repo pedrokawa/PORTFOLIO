@@ -18,7 +18,6 @@ export class Header {
     this.menuOpen = false;
   }
 
-
   goto(id: string){
 
     if(id === 'home'){
@@ -38,11 +37,14 @@ export class Header {
     this.fecharMenu();
   }
 
-  isScrolled = false;
+  isScrolled: boolean = false;
 
   @HostListener('window:scroll', [])
   onWindowScroll(){
-    this.isScrolled = window.scrollY > 50;
+    if(typeof window !== 'undefined'){
+      this.isScrolled = window.scrollY > 50;
+    }
+
   }
 
 

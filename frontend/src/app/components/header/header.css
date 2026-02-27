@@ -1,6 +1,8 @@
 .main-header{
     display: flex;
-    background-color: transparent;
+    background-color: transparent !important;
+
+    box-shadow: none !important;
 
     justify-content: space-between;
     align-items: center;
@@ -17,7 +19,7 @@
 
 .main-header.scrolled{
 
-  background-color: rgb(255, 255, 255); 
+  background-color: rgb(255, 255, 255) !important; 
   
   /* Efeito Blur (Desfoque) no fundo - estilo iOS/Glassmorphism */
   backdrop-filter: blur(10px);
@@ -25,7 +27,7 @@
   
   /* Opcional: Diminuir o header para ficar mais compacto ao rolar */
   padding: 10px 20px;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08) !important;
 }
 
 .main-header.scrolled a{
