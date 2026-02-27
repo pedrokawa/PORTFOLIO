@@ -27,7 +27,7 @@
     gap: 10%;
 
     width: 100%;
-    padding: 20px 0;
+    padding: 20px 20px;
 }
 
 .copyright-section{
@@ -147,7 +147,7 @@ form textarea:focus{
     .main-footer{
         margin-top: 5rem;
     }
-    
+
     .bottom-content {
         display: flex !important;
         flex-direction: column !important; /* Transforma as 2 colunas em 1 só (empilha) */
