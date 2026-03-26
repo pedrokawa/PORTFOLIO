@@ -61,3 +61,49 @@ if (process.env.NODE_ENV !== 'production'){
 }
 
 module.exports = app;
+
+// regrista novo abastecimento
+app.post('/api/abastecimento', async (req, res) => {
+    const { placa, marca, modelo, km, operador, litros, preco, total, posto, foto} = req.body;
+
+     if (!placa || !km || !operador || !litros || !preco || !posto) {
+    return res.status(400).json({
+      error: 'Campos obrigatórios: placa, km, operador, litros, preco, posto.'
+    });
+  }
+
+  try {
+    const novoAbastecimento = await prisma.abastecimento.create({
+        data: {
+            placa, 
+            marca: marca || null,
+            modelo: modelo || null,
+            km, 
+            operador,
+            litros: parseFloat(litros),
+            preco: parseFloat(preco),
+            total: parseFloat(total),
+            posto,
+            foto: foto || null,
+        }
+    });
+    res.status(201).json(novoAbastecimento);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Erro ao regristrar abastecimento.'});
+  }
+});
+
+//lista abastecimentos
+
+app.get('/api/abastecimento', async (req, res) => {
+    try {
+        const abastecimentos = await prisma.abastecimento.findMany({
+            orderBY: { createdAt: 'desc'}
+        });
+        res.json(abastecimentos);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao buscar abastecimentos.'});
+    }
+})

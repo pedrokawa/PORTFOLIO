@@ -21,3 +21,19 @@ model Lead {
   mensagem String
   createdAt DateTime @default(now())
 }
+
+model Abastecimento {
+  id        Int      @id @default(autoincrement())
+  
+  placa     String
+  marca     String?
+  modelo    String?
+  km        String
+  operador  String
+  litros    Float
+  preco     Float
+  total     Float
+  posto     String
+  foto      String?
+  createdAt DateTime @default(now())
+}
