@@ -95,7 +95,6 @@ app.post('/api/abastecimento', async (req, res) => {
 });
 
 //lista abastecimentos
-
 app.get('/api/abastecimento', async (req, res) => {
     try {
         const abastecimentos = await prisma.abastecimento.findMany({
