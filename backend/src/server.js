@@ -99,7 +99,7 @@ app.post('/api/abastecimento', async (req, res) => {
 app.get('/api/abastecimento', async (req, res) => {
     try {
         const abastecimentos = await prisma.abastecimento.findMany({
-            orderBY: { createdAt: 'desc'}
+            orderBy: { createdAt: 'desc'}
         });
         res.json(abastecimentos);
     } catch (error) {
