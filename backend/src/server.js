@@ -17,6 +17,11 @@ app.get('/', (req, res) => {
     res.send('Backend OK!');
 });
 
+if (process.env.NODE_ENV !== 'production'){
+    app.listen(3000, () => console.log('Servidor rodando  na porta 3000'));
+}
+
+// CONTATOS NOVOS
 app.post('/api/contato', async(req, res) => {
     const { nome, telefone, email, mensagem } = req.body;
 
@@ -56,12 +61,7 @@ app.post('/api/contato', async(req, res) => {
     }
 });
 
-if (process.env.NODE_ENV !== 'production'){
-    app.listen(3000, () => console.log('Servidor rodando  na porta 3000'));
-}
-
-module.exports = app;
-
+// ABASTECIMENTOS
 // regrista novo abastecimento
 app.post('/api/abastecimento', async (req, res) => {
     const { placa, marca, modelo, km, operador, litros, preco, total, posto, foto} = req.body;
@@ -105,4 +105,102 @@ app.get('/api/abastecimento', async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Erro ao buscar abastecimentos.'});
     }
+});
+
+//USUARIOS
+//registra novo usuário 
+app.post('/api/usuario', async (req, res) => {
+    try {
+        const {
+            user, password
+        } = req.body;
+
+        const newUser = await prisma.user.create({
+            data : {
+                user,
+                password
+            },
+        });
+
+        return res.status(201).json(newUser);
+    } catch (error) {
+        console.log("Erro ao cadastrar usuário.", error);
+        return res.status(500).json({
+            erro: 'Não foi possível cadastrar usuário.'
+        })
+    }
+});
+
+//lista usuário
+app.get('/api/usuario', async (req, res) => {
+    try {
+        const usuarios = await prisma.usuario.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
+        return res.status(200).json(usuarios);
+    } catch (error) {
+        console.log("Erro ao buscar usuários:", error);
+        return res.status(500).json({
+            erro: 'Não foi possivel listar usuários.'
+        })
+    }
 })
+
+//VEICULOS
+//registra novo veículo
+app.post('/api/veiculos', async (req, res) => {
+    try{
+        const {
+            placa, marca, modelo, anoFabricacao, anoModelo, 
+            chassi, renavam, cor, combustivel, kmAtual,
+            status, observacoes, codigoFrota
+        } = req.body;
+
+        const novoVeiculo = await prisma.veiculos.create({
+            data : {
+                placa,
+                codigoFrota,
+                marca, 
+                modelo,
+                anoFabricacao,
+                anoModelo,
+                chassi,
+                renavam,
+                cor,
+                combustivel,
+                kmAtual,
+                status, 
+                observacoes
+            },
+        });
+
+        return res.status(201).json(novoVeiculo);
+    } catch (error) {
+        console.log("Erro ao cadastrar veículo.", error);
+        return res.status(500).json({
+            erro: 'Não foi possível cadastrar veículo. Verifique e tente novamente.'
+        })
+    }
+});
+
+//lista todos os veículo
+app.get('/api/veiculos', async (req, res) => {
+    try {
+        const veiculos = await prisma.veiculo.findMany({
+            orderBy: {
+                createdAt: 'desc'
+            }
+        });
+
+        return res.status(200).json(veiculos);
+    } catch (error) {
+        console.log("Erro ao buscar veículos:", error);
+        return res.status(500).json({
+            erro: 'Não foi possível listar os veículos.'
+        })
+    }
+})
+
+module.exports = app;
