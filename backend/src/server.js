@@ -17,10 +17,6 @@ app.get('/', (req, res) => {
     res.send('Backend OK!');
 });
 
-if (process.env.NODE_ENV !== 'production'){
-    app.listen(3000, () => console.log('Servidor rodando  na porta 3000'));
-}
-
 // CONTATOS NOVOS
 app.post('/api/contato', async(req, res) => {
     const { nome, telefone, email, mensagem } = req.body;
@@ -110,10 +106,10 @@ app.get('/api/abastecimento', async (req, res) => {
 //USUARIOS
 //registra novo usuário 
 app.post('/api/usuario', async (req, res) => {
+ 
+    const { user, password } = req.body;
+ 
     try {
-        const {
-            user, password
-        } = req.body;
 
         const newUser = await prisma.user.create({
             data : {
@@ -134,7 +130,7 @@ app.post('/api/usuario', async (req, res) => {
 //lista usuário
 app.get('/api/usuario', async (req, res) => {
     try {
-        const usuarios = await prisma.usuario.findMany({
+        const usuarios = await prisma.user.findMany({
             orderBy: {
                 createdAt: 'desc'
             }
@@ -202,5 +198,9 @@ app.get('/api/veiculos', async (req, res) => {
         })
     }
 })
+
+if (process.env.NODE_ENV !== 'production'){
+    app.listen(3000, () => console.log('Servidor rodando  na porta 3000'));
+}
 
 module.exports = app;
