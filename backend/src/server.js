@@ -158,7 +158,7 @@ app.post('/api/veiculos', async (req, res) => {
             status, observacoes, codigoFrota
         } = req.body;
 
-        const novoVeiculo = await prisma.veiculos.create({
+        const novoVeiculo = await prisma.veiculo.create({
             data : {
                 placa,
                 codigoFrota,
