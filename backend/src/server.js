@@ -181,6 +181,30 @@ app.post('/api/veiculos', async (req, res) => {
     }
 });
 
+//busca veiculo por placa
+app.get('/api/veiculos/:placa', async ( req, res ) => {
+    try {
+        const { placa } = req.params;
+
+        const veiculo = await prisma.veiculo.findFirst({
+            where: {
+                placa: {
+                    equals: placa.toUpperCase(),
+                }
+            }
+        });
+
+        if (!veiculo) {
+            return res.status(404).json({erro: 'Veículo não cadastrado.'});
+        }
+
+        return res.status(200).json(veiculo);
+    } catch (error) {
+        console.log('Erro ao buscar veículo.', error);
+        return res.status(500).json({ erro: 'Erro ao buscar veículo.'});
+    }
+})
+
 //lista todos os veículo
 app.get('/api/veiculos', async (req, res) => {
     try {
