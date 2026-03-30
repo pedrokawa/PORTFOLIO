@@ -55,7 +55,7 @@ model Veiculo {
   modelo          String
   anoFabricacao   Int?
   anoModelo       Int?
-  chassi          String?  @unique
+  chassi          String?
   renavam         String?  @unique
   cor             String?
   combustivel     String?  // Flex, Diesel, Gasolina
