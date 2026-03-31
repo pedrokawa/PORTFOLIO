@@ -29,6 +29,7 @@ model Abastecimento {
   marca     String?
   modelo    String?
   km        String
+  horimetro String
   operador  String
   litros    Float
   preco     Float
