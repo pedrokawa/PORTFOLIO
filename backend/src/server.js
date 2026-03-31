@@ -17,6 +17,41 @@ app.get('/', (req, res) => {
     res.send('Backend OK!');
 });
 
+//LOGIN
+const bcrypt = require('bcrypt')
+
+app.post('/api/login', async (req, res) => {
+    const { user, password } = req.body;
+
+    if (!user || !password) {
+        return res.status(400).json({ erro: 'Usuário e senha obrigatórias.'});
+    }
+
+    try {
+        const usuario = await prisma.user.findFirst({
+            where: { user } 
+        });
+
+        if (!usuario) {
+            return res.status(401).json({erro: 'Usuário não encontrado.'});
+        }
+
+        const senhaCorreta = await bcrypt.compare(password, usuario.password);
+
+        if (!senhaCorreta) {
+            return res.status(401).json({ erro: 'Senha incorreta.' });
+        }
+
+        return res.status(200).json({
+            id: usuario.id,
+            user: usuario.user
+        });
+    } catch (error) {
+        console.log('Erro no login:', error);
+        return res.status(500).json({ erro: 'Erro ao realizar login.' });
+    }
+})
+
 // CONTATOS NOVOS
 app.post('/api/contato', async(req, res) => {
     const { nome, telefone, email, mensagem } = req.body;
@@ -112,14 +147,19 @@ app.post('/api/usuario', async (req, res) => {
  
     try {
 
+        const senhaCriptografa = await bcrypt.hash(password, 10);
+
         const newUser = await prisma.user.create({
             data : {
                 user,
-                password
+                password: senhaCriptografa
             },
         });
 
-        return res.status(201).json(newUser);
+        return res.status(201).json({ 
+            id: newUser.id, 
+            user: newUser.user 
+        });
     } catch (error) {
         console.log("Erro ao cadastrar usuário.", error);
         return res.status(500).json({
