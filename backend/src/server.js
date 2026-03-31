@@ -139,6 +139,34 @@ app.get('/api/abastecimento', async (req, res) => {
     }
 });
 
+//relatorio abastecimento
+app.get('/api/relatorio/abastecimento', async (req, res) => {
+    try {
+        const veiculos = await prisma.veiculo.findMany({
+            orderBy: { placa: 'asc'}
+        });
+
+        const result = await Promise.all(veiculos.map(async (veiculo) => {
+            const ultimoAbast = await prisma.abastecimento.findFirst({
+                where: { placa: veiculo.placa},
+                orderBy: { createdAt: 'desc'},
+            });
+
+            return {
+                placa: veiculo.placa,
+                marca: veiculo.marca,
+                modelo: veiculo.modelo,
+                ultimoAbast: ultimoAbast || null
+            };
+        }));
+
+        return res.status(200).json(result);
+    }catch (error){
+        console.log('Erro ao buscar relatório.', error);
+        return res.status(500).json({ erro: 'Erro ao buscar relatório.'})
+    }
+});
+
 //USUARIOS
 //registra novo usuário 
 app.post('/api/usuario', async (req, res) => {
