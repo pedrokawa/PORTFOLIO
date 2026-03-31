@@ -60,11 +60,11 @@ app.post('/api/contato', async(req, res) => {
 // ABASTECIMENTOS
 // regrista novo abastecimento
 app.post('/api/abastecimento', async (req, res) => {
-    const { placa, marca, modelo, km, operador, litros, preco, total, posto, foto} = req.body;
+    const { placa, marca, modelo, km, horimetro, operador, litros, preco, total, posto, foto} = req.body;
 
-     if (!placa || !km || !operador || !litros || !preco || !posto) {
+     if (!placa || !operador || !litros || !preco || !posto) {
     return res.status(400).json({
-      error: 'Campos obrigatórios: placa, km, operador, litros, preco, posto.'
+      error: 'Campos obrigatórios: placa, operador, litros, preco, posto.'
     });
   }
 
@@ -74,7 +74,8 @@ app.post('/api/abastecimento', async (req, res) => {
             placa, 
             marca: marca || null,
             modelo: modelo || null,
-            km, 
+            km: km || '0', 
+            horimetro: horimetro || '0',
             operador,
             litros: parseFloat(litros),
             preco: parseFloat(preco),
