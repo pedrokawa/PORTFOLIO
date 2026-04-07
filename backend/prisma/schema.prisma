@@ -31,9 +31,11 @@ model Abastecimento {
   km        String?
   horimetro String?
   operador  String
-  litros    Float
-  preco     Float
-  total     Float
+  
+  litros    Decimal
+  preco     Decimal
+  total     Decimal
+
   posto     String
   foto      String?
   createdAt DateTime @default(now())
